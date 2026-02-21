@@ -49,47 +49,16 @@
 
                 <!-- CARDS OFFRES -->
                 <div class="flex gap-lg flex-wrap justify-center w-full">
-
-                    <!-- Offre Base -->
-                    <div class="card card-sm" style="width:260px;">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Base</h3>
-                            <p class="card-text">1 unité</p>
-                            <p class="card-text"><strong>100€/mois</strong></p>
-                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                    {% for offre in offres %}
+                        <div class="card card-sm" style="width:260px;">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">{{ offre.label }}</h3>
+                                <p class="card-text">{{ offre.nbUnit }} unité{% if offre.nbUnit > 1 %}s{% endif %}</p>
+                                <p class="card-text"><strong>{{ offre.price|number_format(0, ',', ' ') }}€/mois</strong> {% if offre.reduction > 1 %}({{ offre.reduction }}%){% endif %}</p>
+                                <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Offre Start-up -->
-                    <div class="card card-sm" style="width:260px;">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Start-up</h3>
-                            <p class="card-text">10 unités</p>
-                            <p class="card-text"><strong>900€/mois</strong> (-10%)</p>
-                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
-                        </div>
-                    </div>
-
-                    <!-- Offre PME -->
-                    <div class="card card-sm">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">PME</h3>
-                            <p class="card-text">21 unités</p>
-                            <p class="card-text"><strong>1 680€/mois</strong> (-20%)</p>
-                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
-                        </div>
-                    </div>
-
-                    <!-- Offre Enterprise -->
-                    <div class="card card-sm">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Entreprise</h3>
-                            <p class="card-text">42 unités</p>
-                            <p class="card-text"><strong>2 940€/mois</strong> (-30%)</p>
-                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
             </div>
         </div>
