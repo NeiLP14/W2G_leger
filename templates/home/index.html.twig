@@ -54,7 +54,7 @@
                             <div class="card-body text-center">
                                 <h3 class="card-title">{{ offre.label }}</h3>
                                 <p class="card-text">{{ offre.nbUnit }} unité{% if offre.nbUnit > 1 %}s{% endif %}</p>
-                                <p class="card-text"><strong>{{ offre.price|number_format(0, ',', ' ') }}€/mois</strong> {% if offre.reduction > 1 %}(-{{ offre.reduction }}%){% endif %}</p>
+                                <p class="card-text"><strong>{{ offre.price|number_format(0, ',', ' ') }}€/mois</strong> {% if offre.reduction > 1 %}({{ offre.reduction }}%){% endif %}</p>
                                 <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
                             </div>
                         </div>
