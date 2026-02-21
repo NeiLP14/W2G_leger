@@ -23,6 +23,9 @@ class Offre
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 5)]
     private ?string $price = null;
 
+    #[ORM\Column]
+    private ?int $reduction = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Offre
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getReduction(): ?int
+    {
+        return $this->reduction;
+    }
+
+    public function setReduction(int $reduction): static
+    {
+        $this->reduction = $reduction;
 
         return $this;
     }
