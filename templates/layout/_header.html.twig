@@ -12,31 +12,12 @@
             </ul>
             <div class="nav-actions">
                 {% if app.user %}
+                    <a href="" class="btn">{{ app.user.username}}</a>
                     <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a>
                 {% else %}
                     <a href="{{ path('app_login') }}" class="btn btn-outline">Connexion</a>
                     <a href="{{ path('app_register') }}" class="btn btn-primary">S'inscrire</a>
                 {% endif %}
-            </div>
-
-            <!-- Mobile Menu -->
-            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-            <label for="menu-toggle" class="mobile-menu-toggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </label>
-
-            <div class="mobile-nav-menu">
-                <ul>
-                    <li><a href="{{ path('app_home') }}" class="nav-link active">Accueil</a></li>
-                </ul>
-                <div class="mobile-nav-actions">
-                    <a href="{{ path('app_login') }}" class="btn btn-outline">Connexion</a>
-                    <a href="{{ path('app_register') }}" class="btn btn-primary">S'inscrire</a>
-                </div>
             </div>
         </div>
     </nav>
