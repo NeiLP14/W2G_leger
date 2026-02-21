@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
 #[ORM\DiscriminatorMap([
     'customer' => Customer::class,
+    'company' => Company::class,
     'admin' => Admin::class,
     'accountant' => Accountant::class,
     'technician' => Technician::class
