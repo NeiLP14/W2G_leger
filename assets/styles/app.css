@@ -1736,3 +1736,15 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.section {
+    padding: var(--spacing-xxl) 0;
+}
+
+.popular-venues .card {
+    min-width: 240px;
+}

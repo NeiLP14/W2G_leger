@@ -1,31 +1,99 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Accueil - Work Together{% endblock %}
+
 {% block body %}
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content text-center">
-                <h1 class="hero-title mb-md">
-                    Bienvenue sur <span class="highlight">WorkTogether</span>
-                </h1>
-                <p class="hero-description mb-xl">
-                    WorkTogether Data Solutions est une entreprise spécialisée dans la gestion de datacenters de
-                    pointe. Forte de son expertise en matière de sécurité, de fiabilité et de durabilité, WorkTogether
-                    offre une gamme complète de services de gestion de datacenters aux entreprises du monde
-                    entier.
-                </p>
-            </div>
+    <!-- HERO -->
+    <section class="hero text-center">
+        <div class="container hero-content">
+            <h1 class="hero-title mb-md">
+                Bienvenue sur <span class="highlight">Work Together</span>
+            </h1>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- QUI SOMMES-NOUS -->
+    <section class="features text-center">
         <div class="container">
-            <div class="section-header text-center mb-xl">
-                <h2 class="section-title mb-sm">Découvrir nos offres</h2>
+            <h2 class="section-title mb-md">Qui sommes-nous ?</h2>
+
+            <p class="section-description mb-lg">
+                WorkTogether Data Solutions est une entreprise spécialisée dans la gestion de datacenters de
+                pointe. Forte de son expertise en matière de sécurité, de fiabilité et de durabilité, WorkTogether
+                offre une gamme complète de services de gestion de datacenters aux entreprises du monde
+                entier.
+            </p>
+        </div>
+    </section>
+
+    <!-- NOS OFFRES -->
+    <section class="popular-venues bg-gray">
+        <div class="container">
+
+            <div class="text-center mb-xl">
+                <h2 class="section-title mb-sm">Nos offres</h2>
             </div>
 
+            <div class="flex gap-xl justify-between flex-wrap">
+
+                <!-- FILTRE DURÉE -->
+                <div class="filter-group">
+                    <label for="duration">Durée de la location (mois) :</label>
+                    <select id="duration" class="filter-select">
+                        <option selected disabled>Choisissez une durée</option>
+                        <option value="1">1 mois</option>
+                        <option value="3">3 mois</option>
+                        <option value="6">6 mois</option>
+                        <option value="12">12 mois</option>
+                    </select>
+                </div>
+
+                <!-- CARDS OFFRES -->
+                <div class="flex gap-lg flex-wrap justify-center w-full">
+
+                    <!-- Offre Base -->
+                    <div class="card card-sm" style="width:260px;">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Base</h3>
+                            <p class="card-text">1 unité</p>
+                            <p class="card-text"><strong>99€/mois</strong></p>
+                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                        </div>
+                    </div>
+
+                    <!-- Offre Start-up -->
+                    <div class="card card-sm" style="width:260px;">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Start-up</h3>
+                            <p class="card-text">10 unités</p>
+                            <p class="card-text"><strong>899€/mois</strong></p>
+                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                        </div>
+                    </div>
+
+                    <!-- Offre PME -->
+                    <div class="card card-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">PME</h3>
+                            <p class="card-text">21 unités</p>
+                            <p class="card-text"><strong>1679€/mois</strong></p>
+                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                        </div>
+                    </div>
+
+                    <!-- Offre Enterprise -->
+                    <div class="card card-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Enterprise</h3>
+                            <p class="card-text">42 unités</p>
+                            <p class="card-text"><strong>2949€/mois</strong></p>
+                            <a href="#" class="btn btn-primary btn-sm w-full">En savoir plus</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 

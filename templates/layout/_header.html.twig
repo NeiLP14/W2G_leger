@@ -3,21 +3,13 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <a href="index.html">
-                    <img src="assets/images/logo.svg" alt="SpaceHub" class="logo">
+                <a href="{{ path('app_home') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="SpaceHub" class="logo">
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="{{ path('app_home') }}" class="nav-link {%  if app.request.get('_route') == 'app_home' %}active {% endif %}">Accueil</a></li>
+                <li><a href="{{ path('app_home') }}" class="nav-link active">Accueil</a></li>
             </ul>
-            <div class="nav-actions">
-                {% if app.user %}
-                    <a href="{{ path('app_logout') }}" class="btn btn-outline">Déconnexion</a>
-                {% else %}
-                    <a href="{{ path('app_login') }}" class="btn btn-outline">Connexion</a>
-                    <a href="register.html" class="btn btn-primary">S'inscrire</a>
-                {% endif %}
-            </div>
 
             <!-- Mobile Menu -->
             <input type="checkbox" id="menu-toggle" class="menu-checkbox">
