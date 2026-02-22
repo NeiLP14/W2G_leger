@@ -39,8 +39,10 @@ class UserController extends AbstractController
         if ($request->isMethod('POST')) {
 
             $user->setUsername($request->request->get('username'));
-            $user->setNom($request->request->get('nom'));
-            $user->setPrenom($request->request->get('prenom'));
+            if (in_array('ROLE_CUSTOMER', $user->getRoles(), true)) {
+                $user->setNom($request->request->get('nom', $user->getNom()));
+                $user->setPrenom($request->request->get('prenom', $user->getPrenom()));
+            }
 
             $oldPassword = $request->request->get('old_password');
             $newPassword = $request->request->get('new_password');
