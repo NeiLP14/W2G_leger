@@ -13,8 +13,38 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column]
+    private ?\DateTime $date_deb = null;
+
+    #[ORM\Column]
+    private ?\DateTime $date_fin = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getDateDeb(): ?\DateTime
+    {
+        return $this->date_deb;
+    }
+
+    public function setDateDeb(\DateTime $date_deb): static
+    {
+        $this->date_deb = $date_deb;
+
+        return $this;
+    }
+
+    public function getDateFin(): ?\DateTime
+    {
+        return $this->date_fin;
+    }
+
+    public function setDateFin(\DateTime $date_fin): static
+    {
+        $this->date_fin = $date_fin;
+
+        return $this;
     }
 }
