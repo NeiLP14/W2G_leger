@@ -26,27 +26,36 @@
                 <!-- Body -->
                 <div class="card-body">
                     <div class="flex flex-col gap-md">
+                        <!-- Username -->
+                        <div>
+                            <h4>Username</h4>
+                            <p class="card-text">{{ user.username }}</p>
+                        </div>
                         <!-- Email -->
                         <div>
                             <h4>Email</h4>
                             <p class="card-text">{{ user.email }}</p>
                         </div>
 
-                        <!-- Nom -->
-                        <div>
-                            <h4>Nom</h4>
-                            <p class="card-text">
-                                {{ user.nom ?? 'Non renseigné' }}
-                            </p>
-                        </div>
+                        {% for role in user.roles %}
+                            {% if role == 'ROLE_CUSTOMER' %}
+                                <!-- Nom -->
+                                <div>
+                                    <h4>Nom</h4>
+                                    <p class="card-text">
+                                        {{ user.nom ?? 'Non renseigné' }}
+                                    </p>
+                                </div>
 
-                        <!-- Prénom -->
-                        <div>
-                            <h4>Prénom</h4>
-                            <p class="card-text">
-                                {{ user.prenom ?? 'Non renseigné' }}
-                            </p>
-                        </div>
+                                <!-- Prénom -->
+                                <div>
+                                    <h4>Prénom</h4>
+                                    <p class="card-text">
+                                        {{ user.prenom ?? 'Non renseigné' }}
+                                    </p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
