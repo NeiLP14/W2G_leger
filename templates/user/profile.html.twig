@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.username }}{% endblock %}
+
+{% block body %}
+
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="card card-elevated">
+                <!-- Header -->
+                <div class="card-header flex justify-between items-center">
+                    <div>
+                        <h2 class="card-title mb-sm">
+                            {{ user.prenom ?? '' }} {{ user.nom ?? '' }}
+                        </h2>
+                        <p class="text-primary">@{{ user.username }}</p>
+                    </div>
+
+                    {% if app.user and app.user.id == user.id %}
+                        <a href="#" class="btn btn-outline btn-sm">
+                            Modifier
+                        </a>
+                    {% endif %}
+                </div>
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="flex flex-col gap-md">
+                        <!-- Email -->
+                        <div>
+                            <h4>Email</h4>
+                            <p class="card-text">{{ user.email }}</p>
+                        </div>
+
+                        <!-- Nom -->
+                        <div>
+                            <h4>Nom</h4>
+                            <p class="card-text">
+                                {{ user.nom ?? 'Non renseigné' }}
+                            </p>
+                        </div>
+
+                        <!-- Prénom -->
+                        <div>
+                            <h4>Prénom</h4>
+                            <p class="card-text">
+                                {{ user.prenom ?? 'Non renseigné' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
