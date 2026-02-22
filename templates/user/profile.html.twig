@@ -17,7 +17,8 @@
                     </div>
 
                     {% if app.user and app.user.id == user.id %}
-                        <a href="#" class="btn btn-outline btn-sm">
+                        <a href="{{ path('user_profile_edit', {id: user.id}) }}"
+                           class="btn btn-outline btn-sm">
                             Modifier
                         </a>
                     {% endif %}

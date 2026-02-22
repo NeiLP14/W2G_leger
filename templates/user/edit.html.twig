@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="card card-elevated">
+                <div class="card-header">
+                    <h2>Modifier mon profil</h2>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" class="flex flex-col gap-md">
+
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="username"
+                                   value="{{ user.username }}"
+                                   class="form-input">
+                        </div>
+
+                        {% for role in user.roles %}
+                            {% if role == 'ROLE_CUSTOMER' %}
+                                <div class="form-group">
+                                    <label>Nom</label>
+                                    <input type="text" name="nom"
+                                           value="{{ user.nom }}"
+                                           class="form-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Prénom</label>
+                                    <input type="text" name="prenom"
+                                           value="{{ user.prenom }}"
+                                           class="form-input">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <hr>
+
+                        <h4>Changer de mot de passe</h4>
+
+                        <div class="form-group">
+                            <label>Ancien mot de passe</label>
+                            <input type="password" name="old_password"
+                                   class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nouveau mot de passe</label>
+                            <input type="password" name="new_password"
+                                   class="form-input">
+                        </div>
+
+                        <button class="btn btn-primary">
+                            Enregistrer
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
