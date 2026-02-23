@@ -14,7 +14,7 @@ class OffreController extends AbstractController
     #[Route('/offre/{id}', name: 'offre_detail')]
     public function detail(Offre $offre): Response
     {
-        return $this->render('offre/index.html.twig', [
+        return $this->render('offre/detail.html.twig', [
             'offre' => $offre,
         ]);
     }
