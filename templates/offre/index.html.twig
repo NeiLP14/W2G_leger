@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- NOS OFFRES -->
+    <section class="popular-venues bg-gray">
+        <div class="container">
+
+            <div class="text-center mb-xl">
+                <h2 class="section-title mb-sm">Nos offres</h2>
+            </div>
+
+            <div class="flex gap-xl justify-between flex-wrap">
+
+                <!-- FILTRE DURÉE -->
+                <div class="filter-group">
+                    <label for="duration">Durée de la location (mois) :</label>
+                    <select id="duration" class="filter-select">
+                        <option selected disabled>Choisissez une durée</option>
+                        <option value="1">1 mois</option>
+                        <option value="12">12 mois (-10% supplémentaires)</option>
+                    </select>
+                </div>
+
+                <!-- CARDS OFFRES -->
+                <div class="flex gap-lg flex-wrap justify-center w-full">
+                    {% for offre in offres %}
+                        {% include 'offre/_card.html.twig' with {'offre': offre} only %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
