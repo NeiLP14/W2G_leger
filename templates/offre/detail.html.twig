@@ -13,7 +13,19 @@
                     {% if offre.reduction > 0 %}
                         <p><strong>Réduction :</strong> -{{ offre.reduction }}%</p>
                     {% endif %}
+                </div>
+                <div class="card-body">
                     <a href="{{ path('app_offre_index') }}" class="btn btn-outline mt-4">Retour aux offres</a>
+                </div>
+                <div class="card-header">
+                    <h2 class="card-title">Commander</h2>
+                </div>
+                <div class="card-body">
+                    {% if app.user %}
+                        <p>Commande :</p>
+                    {% else %}
+                        <p>Vous devez être connectés pour pouvoir commander.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
