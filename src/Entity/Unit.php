@@ -19,6 +19,13 @@ class Unit
     #[ORM\Column]
     private ?bool $is_occuped = null;
 
+    #[ORM\Column]
+    private ?int $position = null;
+
+    #[ORM\ManyToOne(inversedBy: 'units')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Bay $bay = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +51,30 @@ class Unit
     public function setIsOccuped(bool $is_occuped): static
     {
         $this->is_occuped = $is_occuped;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(int $position): static
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getBay(): ?Bay
+    {
+        return $this->bay;
+    }
+
+    public function setBay(?Bay $bay): static
+    {
+        $this->bay = $bay;
 
         return $this;
     }
