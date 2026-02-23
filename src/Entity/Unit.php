@@ -16,6 +16,9 @@ class Unit
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
+    #[ORM\Column]
+    private ?bool $is_occuped = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Unit
     public function setLabel(string $label): static
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function isOccuped(): ?bool
+    {
+        return $this->is_occuped;
+    }
+
+    public function setIsOccuped(bool $is_occuped): static
+    {
+        $this->is_occuped = $is_occuped;
 
         return $this;
     }
