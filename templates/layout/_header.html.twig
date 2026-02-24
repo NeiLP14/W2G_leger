@@ -10,6 +10,9 @@
             <ul class="nav-menu">
                 <li><a href="{{ path('app_home') }}" class="nav-link {%  if app.request.get('_route') == 'app_home' %}active {% endif %}">Accueil</a></li>
                 <li><a href="{{ path('app_offre_index') }}" class="nav-link {%  if app.request.get('_route') == 'app_offre_index' %}active {% endif %}">Offres</a></li>
+                {% if app.user %}
+                    <li><a href="{{ path('user_unit') }}" class="nav-link {%  if app.request.get('_route') == 'user_unit' %}active {% endif %}">Mes Unités</a></li>
+                {% endif %}
             </ul>
             <div class="nav-actions">
                 {% if app.user %}
