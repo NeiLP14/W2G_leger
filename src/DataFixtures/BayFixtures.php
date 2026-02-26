@@ -3,14 +3,26 @@
 namespace App\DataFixtures;
 
 use App\Entity\Bay;
+use App\Entity\State;
 use App\Entity\Unit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use App\Repository\StateRepository;
 
-class BayFixtures extends Fixture
+class BayFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function getDependencies(): array
+    {
+        return [
+            StateFixtures::class,
+        ];
+    }
     public function load(ObjectManager $manager): void
     {
+        $stateRepository = $manager->getRepository(State::class);
+        $defaultState = $stateRepository->findOneBy(['label' => 'OK']);
+
         for ($i = 1; $i <= 30; $i++) {
 
             $bay = new Bay();
@@ -21,7 +33,6 @@ class BayFixtures extends Fixture
 
             $manager->persist($bay);
 
-            // Génération des 42U
             for ($u = 1; $u <= 42; $u++) {
 
                 $unit = new Unit();
@@ -30,6 +41,7 @@ class BayFixtures extends Fixture
                 $unit->setLabel('U' . str_pad((string) $u, 2, '0', STR_PAD_LEFT));
                 $unit->setIsOccuped(false);
                 $unit->setBay($bay);
+                $unit->setState($defaultState);
 
                 $manager->persist($unit);
             }

@@ -26,6 +26,10 @@ class Unit
     #[ORM\JoinColumn(nullable: false)]
     private ?Bay $bay = null;
 
+    #[ORM\ManyToOne(inversedBy: 'units')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?State $state = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class Unit
     public function setBay(?Bay $bay): static
     {
         $this->bay = $bay;
+
+        return $this;
+    }
+
+    public function getState(): ?State
+    {
+        return $this->state;
+    }
+
+    public function setState(?State $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }
