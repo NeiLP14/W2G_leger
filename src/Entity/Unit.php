@@ -30,6 +30,9 @@ class Unit
     #[ORM\JoinColumn(nullable: false)]
     private ?State $state = null;
 
+    #[ORM\ManyToOne(inversedBy: 'units')]
+    private ?Type $type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Unit
     public function setState(?State $state): static
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
