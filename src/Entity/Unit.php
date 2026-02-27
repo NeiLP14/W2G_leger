@@ -33,6 +33,9 @@ class Unit
     #[ORM\ManyToOne(inversedBy: 'units')]
     private ?Type $type = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nom_temp = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,18 @@ class Unit
     public function setType(?Type $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getNomTemp(): ?string
+    {
+        return $this->nom_temp;
+    }
+
+    public function setNomTemp(?string $nom_temp): static
+    {
+        $this->nom_temp = $nom_temp;
 
         return $this;
     }
