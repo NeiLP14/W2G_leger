@@ -23,6 +23,10 @@ class Intervention
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'interventions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Technician $technician = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Intervention
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTechnician(): ?Technician
+    {
+        return $this->technician;
+    }
+
+    public function setTechnician(?Technician $technician): static
+    {
+        $this->technician = $technician;
 
         return $this;
     }
