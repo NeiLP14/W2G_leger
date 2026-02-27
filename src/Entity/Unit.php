@@ -36,6 +36,9 @@ class Unit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom_temp = null;
 
+    #[ORM\ManyToOne(inversedBy: 'units')]
+    private ?Reservation $reservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class Unit
     public function setNomTemp(?string $nom_temp): static
     {
         $this->nom_temp = $nom_temp;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): static
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }
