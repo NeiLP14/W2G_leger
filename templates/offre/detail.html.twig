@@ -22,10 +22,15 @@
                 </div>
                 <div class="card-body">
                     {% if app.user %}
-                        <p>Commande :</p>
+                        {% if is_granted('ROLE_CUSTOMER') or is_granted('ROLE_COMPANY') %}
+                            <p>Commande :</p>
+                        {% else %}
+                            <p>Vous devez être connecté en tant que "Client" ou "Entreprise" pour commander.</p>
+                        {% endif %}
                     {% else %}
                         <p>Vous devez être connectés pour pouvoir commander.</p>
                     {% endif %}
+
                 </div>
             </div>
         </div>
