@@ -4,35 +4,105 @@
     <section class="section bg-gray">
         <div class="container max-w-lg mx-auto">
             <div class="card card-elevated">
+
                 <div class="card-header">
                     <h2 class="card-title">{{ offre.label }}</h2>
                 </div>
+
                 <div class="card-body">
                     <p><strong>Unités :</strong> {{ offre.nbUnit }} unité{% if offre.nbUnit > 1 %}s{% endif %}</p>
                     <p><strong>Prix :</strong> {{ offre.price|number_format(0, ',', ' ') }}€/mois</p>
+
                     {% if offre.reduction > 0 %}
                         <p><strong>Réduction :</strong> -{{ offre.reduction }}%</p>
                     {% endif %}
                 </div>
+
                 <div class="card-body">
-                    <a href="{{ path('app_offre_index') }}" class="btn btn-outline mt-4">Retour aux offres</a>
+                    <a href="{{ path('app_offre_index') }}" class="btn btn-outline mt-4">
+                        Retour aux offres
+                    </a>
                 </div>
+
                 <div class="card-header">
                     <h2 class="card-title">Commander</h2>
                 </div>
+
                 <div class="card-body">
-                    {% if app.user %}
-                        {% if is_granted('ROLE_CUSTOMER') or is_granted('ROLE_COMPANY') %}
-                            <p>Commande :</p>
-                        {% else %}
-                            <p>Vous devez être connecté en tant que "Client" ou "Entreprise" pour commander.</p>
+
+                    {% if app.user and (is_granted('ROLE_CUSTOMER') or is_granted('ROLE_COMPANY')) %}
+
+                        {% if form is defined %}
+                            {{ form_start(form) }}
+
+                            <div class="form-group mb-md">
+                                <label><strong>Durée de l'offre :</strong></label>
+                                {{ form_widget(form.duration) }}
+                            </div>
+
+                            <div class="card bg-gray border-radius p-md mb-md">
+
+                                <div class="flex justify-between mb-xs">
+                                    <span>Offre</span>
+                                    <strong>{{ offre.label }}</strong>
+                                </div>
+
+                                <div class="flex justify-between mb-xs">
+                                    <span>Nombre d’unités</span>
+                                    <strong>{{ nbUnits }}</strong>
+                                </div>
+
+                                <div class="flex justify-between mb-xs">
+                                    <span>Prix mensuel</span>
+                                    <strong>{{ monthlyPrice|number_format(0, ',', ' ') }} €</strong>
+                                </div>
+
+                                <hr class="my-2">
+
+                                <div class="flex justify-between">
+                                    <strong>Total estimé</strong>
+                                    <strong id="total-price">
+                                        {{ monthlyPrice|number_format(0, ',', ' ') }} €
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-full btn-lg">
+                                Confirmer la commande
+                            </button>
+
+                            {{ form_end(form) }}
                         {% endif %}
+
+                    {% elseif app.user %}
+                        <p>Vous devez être connecté en tant que "Client" ou "Entreprise" pour commander.</p>
                     {% else %}
-                        <p>Vous devez être connectés pour pouvoir commander.</p>
+                        <p>Vous devez être connecté pour pouvoir commander.</p>
                     {% endif %}
 
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const radios = document.querySelectorAll('input[name="reservation[duration]"]');
+            const totalElement = document.getElementById('total-price');
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+
+                    if (this.value == 1) {
+                        totalElement.innerText = "{{ monthlyPrice|number_format(0, ',', ' ') }} €";
+                    } else {
+                        totalElement.innerText = "{{ annualPrice|number_format(0, ',', ' ') }} €";
+                    }
+
+                });
+            });
+
+        });
+    </script>
 {% endblock %}
