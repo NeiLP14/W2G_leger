@@ -7,6 +7,7 @@
     <section class="section bg-gray">
         <div class="container">
             <div class="card card-elevated">
+
                 <!-- Header -->
                 <div class="card-header flex justify-between items-center">
                     <div>
@@ -90,7 +91,7 @@
                                         </span>
                                     </div>
                                     <!-- Badge statut -->
-                                    <div>
+                                    <div class="flex items-center gap-sm">
                                         {% if reservation.dateFin > "now"|date %}
                                             <span class="badge badge-success-soft badge-pill">
                                                 Active
@@ -100,6 +101,11 @@
                                                 Terminée
                                             </span>
                                         {% endif %}
+
+                                        <a href="{{ path('reservation_manage', {id: reservation.id}) }}"
+                                           class="btn btn-outline btn-sm">
+                                            Voir
+                                        </a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -110,6 +116,7 @@
                         </div>
                     {% endif %}
                 </div>
+
             </div>
         </div>
     </section>

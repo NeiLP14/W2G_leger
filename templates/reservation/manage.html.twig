@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion réservation{% endblock %}
+
+{% block body %}
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="card card-elevated">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        {{ reservation.offre.label }}
+                    </h2>
+                    <p class="card-text">
+                        Du {{ reservation.dateDeb|date('d/m/Y') }}
+                        au {{ reservation.dateFin|date('d/m/Y') }}
+                    </p>
+                </div>
+
+                <div class="card-body">
+                    {% if reservation.units|length > 0 %}
+                        <div class="bookings-table">
+                            {% for unit in reservation.units %}
+                                <div class="booking-item">
+                                    <div class="booking-info">
+                                        <h4>
+                                            {{ unit.bay.label }}-{{ unit.label }}
+                                        </h4>
+                                    </div>
+                                    <div class="flex items-center gap-sm">
+                                        État :
+                                        <span class="badge badge-primary-soft badge-pill">
+                                            {{ unit.state.label }}
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    {% else %}
+                        <p class="card-text">
+                            Aucune unité associée à cette réservation.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
