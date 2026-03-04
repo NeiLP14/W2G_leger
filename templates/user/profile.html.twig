@@ -60,6 +60,56 @@
                         {% endfor %}
                     </div>
                 </div>
+
+                <!-- Reservation -->
+                <div class="card-header flex justify-between items-center">
+                    <h2 class="card-title mb-sm">
+                        Vos réservations
+                    </h2>
+                </div>
+                <div class="card-body">
+                    {% if user.reservations|length > 0 %}
+                        <div class="bookings-table">
+                            {% for reservation in user.reservations %}
+                                <div class="booking-item">
+                                    <!-- Offre + Infos -->
+                                    <div class="booking-info">
+                                        <h4>{{ reservation.offre.label }}</h4>
+                                        <span class="booking-location">
+                                            {{ reservation.units|length }} unité(s) réservée(s)
+                                        </span>
+                                    </div>
+
+                                    <!-- Dates -->
+                                    <div class="booking-dates">
+                                        <span class="booking-date">
+                                            {{ reservation.dateDeb|date('d/m/Y') }}
+                                        </span>
+                                        <span class="booking-time">
+                                            au {{ reservation.dateFin|date('d/m/Y') }}
+                                        </span>
+                                    </div>
+                                    <!-- Badge statut -->
+                                    <div>
+                                        {% if reservation.dateFin > "now"|date %}
+                                            <span class="badge badge-success-soft badge-pill">
+                                                Active
+                                            </span>
+                                        {% else %}
+                                            <span class="badge badge-gray-soft badge-pill">
+                                                Terminée
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center p-md">
+                            <p class="card-text">Vous n'avez aucune réservation.</p>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </section>
