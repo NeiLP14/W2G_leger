@@ -24,6 +24,10 @@
                                     <div class="booking-info">
                                         <h4>
                                             {{ unit.bay.label }}-{{ unit.label }}
+
+                                            {% if unit.nomTemp %}
+                                                <span class="text-muted">({{ unit.nomTemp }})</span>
+                                            {% endif %}
                                         </h4>
                                     </div>
                                     <div class="flex items-center gap-sm">
@@ -31,6 +35,11 @@
                                         <span class="badge badge-primary-soft badge-pill">
                                             {{ unit.state.label }}
                                         </span>
+                                        <button
+                                            class="btn btn-sm btn-secondary"
+                                            onclick="openConfigModal('{{ unit.id }}', '{{ unit.nomTemp ?? '' }}')">
+                                            Configurer
+                                        </button>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -45,4 +54,32 @@
             </div>
         </div>
     </section>
+    <div id="configModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>Configurer l'unité</h3>
+
+            <form method="post" action="{{ path('app_unit_configure') }}">
+                <input type="hidden" name="unit_id" id="modalUnitId">
+
+                <label>Nom personnalisé</label>
+                <input type="text" name="nom_temp" id="modalNomTemp" class="form-control">
+
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeConfigModal()">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function openConfigModal(unitId, nomTemp) {
+            document.getElementById('modalUnitId').value = unitId;
+            document.getElementById('modalNomTemp').value = nomTemp;
+            document.getElementById('configModal').style.display = 'block';
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').style.display = 'none';
+        }
+    </script>
 {% endblock %}
