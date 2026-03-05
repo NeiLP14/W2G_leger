@@ -6,6 +6,7 @@
     <title>{% block title %}WorkTogether{% endblock %}</title>
     <link rel="icon" href="assets/images/logo" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     {% block stylesheets %}
     {% endblock %}
 
@@ -13,22 +14,24 @@
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     {% endblock %}
 </head>
-    <body>
-        {% include 'layout/_header.html.twig' %}
 
-        <div class="container">
-            {# read and display all flash messages #}
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="flash flash-{{ label }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+<body>
+
+    {% include 'layout/_header.html.twig' %}
+
+    <div class="container">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash flash-{{ label }}">
+                    {{ message }}
+                </div>
             {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
 
-        {% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 
-        {% include 'layout/_footer.html.twig' %}
-    </body>
+    {{ render(controller('App\\Controller\\FooterController::footer')) }}
+
+</body>
 </html>

@@ -11,16 +11,6 @@
 
             <div class="flex gap-xl justify-between flex-wrap">
 
-                <!-- FILTRE DURÉE -->
-                <div class="filter-group">
-                    <label for="duration">Durée de la location (mois) :</label>
-                    <select id="duration" class="filter-select">
-                        <option selected disabled>Choisissez une durée</option>
-                        <option value="1">1 mois</option>
-                        <option value="12">12 mois (-10% supplémentaires)</option>
-                    </select>
-                </div>
-
                 <!-- CARDS OFFRES -->
                 <div class="flex gap-lg flex-wrap justify-center w-full">
                     {% for offre in offres %}
