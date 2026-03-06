@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Repository\TypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -13,7 +14,8 @@ class ReservationController extends AbstractController
 {
     #[Route('/reservation/{id}/manage', name: 'reservation_manage')]
     public function manage(
-        Reservation $reservation
+        Reservation $reservation,
+        TypeRepository $typeRepository
     ): Response {
 
         // Sécurité : empêcher un user d'accéder à une autre réservation
@@ -21,8 +23,11 @@ class ReservationController extends AbstractController
             throw $this->createAccessDeniedException();
         }
 
+        $types = $typeRepository->findAll();
+
         return $this->render('reservation/manage.html.twig', [
-            'reservation' => $reservation
+            'reservation' => $reservation,
+            'types' => $types
         ]);
     }
 }

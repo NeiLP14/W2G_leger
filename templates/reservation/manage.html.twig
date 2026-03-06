@@ -28,6 +28,13 @@
                                             {% if unit.nomTemp %}
                                                 <span class="text-muted">({{ unit.nomTemp }})</span>
                                             {% endif %}
+
+                                            {% if unit.type %}
+                                                <span class="badge badge-pill"
+                                                      style="background-color: {{ unit.type.color }}; color: white;">
+                                                    {{ unit.type.label }}
+                                                </span>
+                                            {% endif %}
                                         </h4>
                                     </div>
                                     <div class="flex items-center gap-sm">
@@ -37,7 +44,11 @@
                                         </span>
                                         <button
                                             class="btn btn-sm btn-secondary"
-                                            onclick="openConfigModal('{{ unit.id }}', '{{ unit.nomTemp ?? '' }}')">
+                                            onclick="openConfigModal(
+                                                '{{ unit.id }}',
+                                                '{{ unit.nomTemp ?? '' }}',
+                                                '{{ unit.type ? unit.type.id : '' }}'
+                                                )">
                                             Configurer
                                         </button>
                                     </div>
@@ -64,6 +75,17 @@
                 <label>Nom personnalisé</label>
                 <input type="text" name="nom_temp" id="modalNomTemp" class="form-control">
 
+                <label>Type</label>
+                <select name="type_id" id="modalType" class="form-control">
+                    <option value="">-- Choisir un type --</option>
+
+                    {% for type in types %}
+                        <option value="{{ type.id }}">
+                            {{ type.label }}
+                        </option>
+                    {% endfor %}
+                </select>
+
                 <div class="mt-2">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                     <button type="button" class="btn btn-secondary" onclick="closeConfigModal()">Annuler</button>
@@ -72,10 +94,12 @@
         </div>
     </div>
     <script>
-        function openConfigModal(unitId, nomTemp) {
+        function openConfigModal(unitId, nomTemp, typeId) {
             document.getElementById('modalUnitId').value = unitId;
             document.getElementById('modalNomTemp').value = nomTemp;
-            document.getElementById('configModal').style.display = 'block';
+            document.getElementById('modalType').value = typeId;
+
+            document.getElementById('configModal').style.display = 'flex';
         }
 
         function closeConfigModal() {

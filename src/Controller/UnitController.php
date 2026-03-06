@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\TypeRepository;
 use App\Repository\UnitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,11 +18,13 @@ class UnitController extends AbstractController
     public function configure(
         Request $request,
         UnitRepository $unitRepository,
+        TypeRepository $typeRepository,
         EntityManagerInterface $em
     ): Response {
 
         $unitId = $request->request->get('unit_id');
         $nomTemp = $request->request->get('nom_temp');
+        $typeId = $request->request->get('type_id');
 
         $unit = $unitRepository->find($unitId);
 
@@ -30,6 +33,11 @@ class UnitController extends AbstractController
         }
 
         $unit->setNomTemp($nomTemp);
+
+        if ($typeId) {
+            $type = $typeRepository->find($typeId);
+            $unit->setType($type);
+        }
 
         $em->flush();
 
