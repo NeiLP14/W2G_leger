@@ -3,11 +3,6 @@ PASSER COMMANDE :
 
 ACCEDER A SES COMMANDES :
 
-ACCEDER A SES UNITES :
-    lui définir un nom
-    lui définir un type associé à une couleur :
-        (web = bleu, bdd = vert, stockage = orange)
-
 Etat temps réel des unités
     électrique, connectivité, climatisation
 
