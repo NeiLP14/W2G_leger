@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UnitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UnitRepository::class)]
@@ -38,6 +40,17 @@ class Unit
 
     #[ORM\ManyToOne(inversedBy: 'units')]
     private ?Reservation $reservation = null;
+
+    /**
+     * @var Collection<int, Intervention>
+     */
+    #[ORM\ManyToMany(targetEntity: Intervention::class, mappedBy: 'units')]
+    private Collection $interventions;
+
+    public function __construct()
+    {
+        $this->interventions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +149,33 @@ class Unit
     public function setReservation(?Reservation $reservation): static
     {
         $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Intervention>
+     */
+    public function getInterventions(): Collection
+    {
+        return $this->interventions;
+    }
+
+    public function addIntervention(Intervention $intervention): static
+    {
+        if (!$this->interventions->contains($intervention)) {
+            $this->interventions->add($intervention);
+            $intervention->addUnit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIntervention(Intervention $intervention): static
+    {
+        if ($this->interventions->removeElement($intervention)) {
+            $intervention->removeUnit($this);
+        }
 
         return $this;
     }

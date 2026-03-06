@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interventions - {{ reservation.offre.label }}{% endblock %}
+
+{% block body %}
+
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="card card-elevated">
+
+                <!-- Header -->
+                <div class="card-header">
+                    <h2 class="card-title">
+                        Interventions - {{ reservation.offre.label }}
+                    </h2>
+                    <a href="{{ path('reservation_manage', {id: reservation.id}) }}"
+                       class="btn btn-outline btn-sm">
+                        Retour à la réservation
+                    </a>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body">
+
+                    {% if interventions|length > 0 %}
+                        <div class="bookings-table">
+
+                            {% for intervention in interventions %}
+                                <div class="booking-item mb-md p-md" style="border: 1px solid #ddd; border-radius: 6px;">
+                                    <!-- Type -->
+                                    <span class="badge"
+                                          style="background-color: {{ intervention.typeIntervention.color }};
+                                              color: white; padding: 0.3em 0.6em; font-size: 0.9em;">
+                                    {{ intervention.typeIntervention.label }}
+                                </span>
+
+                                    <!-- Description -->
+                                    <p class="card-text mt-sm mb-sm">{{ intervention.description }}</p>
+
+                                    <!-- Dates -->
+                                    <p class="card-text text-muted">
+                                        Début : {{ intervention.dateDeb|date('d/m/Y H:i') }} <br>
+                                        Fin   : {{ intervention.dateFin|date('d/m/Y H:i') }}
+                                    </p>
+
+                                    <!-- Unités affectées -->
+                                    {% if intervention.units|length > 0 %}
+                                        <p class="card-text">
+                                            <strong>Unités affectées :</strong>
+                                            {% for unit in intervention.units %}
+                                                {{ unit.bay.label }}-{{ unit.label }}{% if not loop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    {% else %}
+                                        <p class="card-text"><em>Aucune unité affectée</em></p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    {% else %}
+                        <div class="text-center p-md">
+                            <p class="card-text">Aucune intervention enregistrée pour cette réservation.</p>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
