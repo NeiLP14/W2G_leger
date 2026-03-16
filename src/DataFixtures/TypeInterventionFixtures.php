@@ -10,18 +10,16 @@ class TypeInterventionFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $types = [
-            ['label' => 'Incident', 'color' => '#dc3545'],
-            ['label' => 'Maintenance', 'color' => '#fd7e14'],
-        ];
+        $incident = new TypeIntervention();
+        $incident->setLabel("Incident");
+        $incident->setColor("#dc3545");
 
-        foreach ($types as $data) {
-            $type = new TypeIntervention();
-            $type->setLabel($data['label']);
-            $type->setColor($data['color']);
+        $maintenance = new TypeIntervention();
+        $maintenance->setLabel("Maintenance");
+        $maintenance->setColor("#fd7e14");
 
-            $manager->persist($type);
-        }
+        $manager->persist($incident);
+        $manager->persist($maintenance);
 
         $manager->flush();
     }
