@@ -10,10 +10,18 @@
                     <h2 class="card-title">
                         Offre : {{ reservation.offre.label }}
                     </h2>
+
                     <p class="card-text">
                         Du {{ reservation.dateDeb|date('d/m/Y') }}
                         au {{ reservation.dateFin|date('d/m/Y') }}
                     </p>
+
+                    {# 
+                    <a href="{{ path('app_reservation_renew', {id: reservation.id}) }}"
+                    class="btn btn-primary btn-sm mt-2">
+                    🔄 Renouveler l’abonnement
+                    </a>
+                    #}
                 </div>
 
                 <div class="card-body">
