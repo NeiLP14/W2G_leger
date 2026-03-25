@@ -34,6 +34,9 @@ class Offre
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'offre')]
     private Collection $reservations;
 
+    #[ORM\Column]
+    private ?bool $archive = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -118,6 +121,18 @@ class Offre
                 $reservation->setOffre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isArchive(): ?bool
+    {
+        return $this->archive;
+    }
+
+    public function setArchive(bool $archive): static
+    {
+        $this->archive = $archive;
 
         return $this;
     }
