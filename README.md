@@ -1,8 +1,3 @@
-Voici un **README complet en Markdown (.md)**, propre et prêt à être utilisé pour ton client léger 👇
-
----
-
-```markdown
 # 🖥️ WorkTogether – Client Léger (Application Web Symfony)
 
 ## 📌 Présentation
@@ -54,8 +49,6 @@ W2G_leger/
 │── vendor/              # Dépendances Composer
 │── .env                 # Variables d’environnement
 │── composer.json        # Dépendances PHP
-
-```
 
 ---
 
