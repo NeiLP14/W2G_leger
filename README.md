@@ -34,7 +34,7 @@ L’application est accessible via un navigateur web (client léger) et repose s
 - Composer
 
 ---
-
+```md
 ## 📂 Structure du projet
 
 W2G_leger/
@@ -49,7 +49,7 @@ W2G_leger/
 │── vendor/              # Dépendances Composer
 │── .env                 # Variables d’environnement
 │── composer.json        # Dépendances PHP
-
+```
 ---
 
 ## ⚙️ Installation
